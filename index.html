@@ -238,7 +238,7 @@
                 tester.style.color='black'
                 tester.style.top=295-Math.floor(Math.random()*50)+'px'
                 document.querySelector('#img_animar').appendChild(tester)
-                console.log('requeste')
+                
             };for(a=0;a<document.querySelectorAll('#img_animar img').length;a++){
                 timer = Math.floor((Math.random()*7500)*2.7)
                 while(timer<3500){timer=Math.floor((Math.random()*7500)*2.7)}
@@ -283,9 +283,11 @@
                         name_city=valores[0]['nome']
                         }
                     else{
+                        setTimeout(function(){
                         uf_cidade = valores[numerador]['estado']
                         id_city = valores[numerador]['id']}
                         name_city=valores[numerador]['nome']
+                        }1000)
                         //executa o fatiamento da string
                         //console.log(valores[numerador]['nome'].slice(0,5))
                     
@@ -338,10 +340,8 @@
                     botao_0.style.display='none';
 
                     botao_1.onclick=function(){
-                        cidade_id(name_city,tag_select.selectedIndex);
                         setTimeout(function(){
                             teste();
-                            api_request(id_city)
                         },1000)
                         cidade_id(name_city,tag_select.selectedIndex);
                         setTimeout(function(){
