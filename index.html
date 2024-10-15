@@ -39,8 +39,8 @@
             flex-direction:column;
             align-items: center;
             background-color: #87CEFA;
-            width: 250px;
-            height:125px;
+            width: 175px;
+            height:135px;
             left: 20px;
             top:25px;
             z-index: 2;
@@ -51,7 +51,7 @@
         #box_0 label, input, button{
             margin: 10px 0px;
             font-family:fantasy;
-            color:cornflowerblue;
+            color:aliceblue;
             text-shadow:1px 1px 1px #1C1C1C;
         }
         #box_0 input{
@@ -122,7 +122,7 @@
             background-color: antiquewhite;
             border-radius: 10px;
             border: 1px solid #ffff;
-            margin-right:-259px;
+            margin-right:-180px;
             margin-top:-1px;
             transform: rotate(180deg);
         }
@@ -176,11 +176,11 @@
                 if(ativa_0===0){
                     document.querySelector('#arrow_bt').animate([{transform:'rotate(180deg)'},{transform:'rotate(0deg)'}],{duration:1000})
                     document.querySelector('#arrow_bt').style.transform='rotate(0deg)'
-                    document.querySelector('#box_0').animate([{left:'20px'},{left:'-240px'}],{duration:1000})
-                    document.querySelector('#box_0').style.left='-240px';ativa_0++}
+                    document.querySelector('#box_0').animate([{left:'20px'},{left:'-170px'}],{duration:1000})
+                    document.querySelector('#box_0').style.left='-170px';ativa_0++}
                     else{document.querySelector('#arrow_bt').animate([{transform:'rotate(0deg)'},{transform:'rotate(180deg)'}],{duration:1000})
                     document.querySelector('#arrow_bt').style.transform='rotate(180deg)'
-                    document.querySelector('#box_0').animate([{left:'-240px'},{left:'20px'}],{duration:1000})
+                    document.querySelector('#box_0').animate([{left:'-170px'},{left:'20px'}],{duration:1000})
                     document.querySelector('#box_0').style.left='20px';ativa_0=0}
                     }
                 
@@ -309,8 +309,8 @@
                     setTimeout(function(){
                         document.querySelector('#arrow_bt').animate([{transform:'rotate(180deg)'},{transform:'rotate(0deg)'}],{duration:1000})
                         document.querySelector('#arrow_bt').style.transform='rotate(0deg)'
-                        document.querySelector('#box_0').animate([{left:'20px'},{left:'-240px'}],{duration:1000})
-                        document.querySelector('#box_0').style.left='-240px';ativa_0++},900)
+                        document.querySelector('#box_0').animate([{left:'20px'},{left:'-170px'}],{duration:1000})
+                        document.querySelector('#box_0').style.left='-170px';ativa_0++},900)
                     
                     
                     document.querySelector('#box_1').style.display='table'
@@ -344,8 +344,8 @@
                         setTimeout(function(){
                             document.querySelector('#arrow_bt').animate([{transform:'rotate(180deg)'},{transform:'rotate(0deg)'}],{duration:1000})
                             document.querySelector('#arrow_bt').style.transform='rotate(0deg)'
-                            document.querySelector('#box_0').animate([{left:'20px'},{left:'-240px'}],{duration:1000})
-                            document.querySelector('#box_0').style.left='-240px';ativa_0++},900)
+                            document.querySelector('#box_0').animate([{left:'20px'},{left:'-170px'}],{duration:1000})
+                            document.querySelector('#box_0').style.left='-170px';ativa_0++},900)
                         setTimeout(function(){
                             document.querySelector('#box_1').style.display='table';
                             cidade_inner.innerHTML=lista_city[tag_select.selectedIndex];
