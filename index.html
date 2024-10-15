@@ -86,7 +86,7 @@
         #img_clima{
             width:125px;
             position: fixed;
-            margin:45px 135px;
+            margin:45px 100px;
         }
         #cidade_info{
             display:flex;
@@ -338,8 +338,10 @@
                     botao_0.style.display='none';
 
                     botao_1.onclick=function(){
+                        cidade_id(name_city,tag_select.selectedIndex);
                         setTimeout(function(){
-                            teste()
+                            teste();
+                            api_request(id_city)
                         },1000)
                         cidade_id(name_city,tag_select.selectedIndex);
                         setTimeout(function(){
