@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        main{
+            display:flex;
+            justify-content:center;
+            background-color: antiquewhite;
+            width:100%;
+            height: 655px;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+        #bloco_0{
+            position: fixed;
+            width:550px;
+            background-color: antiquewhite;
+            height: 680px;
+            margin-left:-550px;
+            z-index:1;
+            top:0;
+        }
+        #bloco_1{
+            position: fixed;
+            width:550px;
+            background-color: antiquewhite;
+            height: 680px;
+            margin-left:228px;
+            z-index:1;
+            top:0;
+        }
+        #box_0{
+            position:absolute;
+            display:flex;
+            flex-direction:column;
+            align-items: center;
+            background-color: #87CEFA;
+            width: 175px;
+            height:135px;
+            left: 20px;
+            top:25px;
+            z-index: 2;
+            border: 1px solid #ffff;
+            box-shadow:4px 5px 7px;
+            border-radius:5px;
+        }
+        #box_0 label, input, button{
+            margin: 10px 0px;
+            font-family:fantasy;
+            color:aliceblue;
+            text-shadow:1px 1px 1px #1C1C1C;
+        }
+        #box_0 input{
+            border-bottom-left-radius:5px;
+            border-bottom-right-radius:5px;
+            border-bottom:outset;
+            border:none;
+            outline:none;
+            font-family:monospace;
+            color:black;
+            text-shadow:none;
+        }
+        #box_0 button{
+            background-color:#4169E1;
+            border:1px solid;
+            border-radius:2px;
+        }
+        #box_0 button:hover{
+            background-color:#4682B4;
+            border:1px solid;
+            border-radius:5px;
+            cursor:pointer;
+            transition:0.5s;
+        }
+        #box_1{
+            display:table;
+            background-color:#00BFFF;
+            width:200px;
+            height:0;
+            margin:0px 0px;
+        }
+        #img_clima{
+            width:125px;
+            position: fixed;
+            margin:45px 100px;
+        }
+        #cidade_info{
+            display:flex;
+            justify-content: center;
+        }
+        #cidade_info h1{
+            margin-right: 10px;
+            font-size: larger;
+            font-family: cursive;
+            text-shadow: 1px 1px #120f0d;
+            color:steelblue;
+        }
+        #cidade_info h2{
+            font-size:larger;
+            font-family: cursive;
+            text-shadow: 1px 1px #120f0d;
+            color:steelblue;
+        }
+        #clima_info{
+            display:flex;
+            justify-content: center;
+            flex-direction: column;
+            margin:0px 50px;
+            position: relative;
+            z-index: 1;
+            font-family: cursive;
+            text-shadow: 1px 1px #120f0d;
+            color:steelblue;
+            font-size: larger;
+        }
+        #arrow_bt{
+            width: 25px;
+            position:fixed;
+            background-color: antiquewhite;
+            border-radius: 10px;
+            border: 1px solid #ffff;
+            margin-right:-180px;
+            margin-top:-1px;
+            transform: rotate(180deg);
+        }
+        #arrow_bt:hover{
+            cursor:pointer;
+            background-color:#ADD8E6;
+            transition:0.5s;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <section id="box_0">
+            <img id='arrow_bt' src='https://www.svgrepo.com/show/522466/arrow-right.svg'>
+            <label for="cidade">Insira a Cidade:</label>
+            <input id='cidade_0' type="text" placeholder="Insert city name">
+            <button id="bt_0">Confirmar</button>
+            
+        </section>
+        <section id="box_1" style="display:none;">  
+            <div id="bloco_0"></div>
+            <div id='bloco_1'></div>
+            <img id="img_clima" src="">
+            <div id="cidade_info">
+                <h1>Cidade</h1>
+                <h2>UF</h2>
+            </div>
+            <div id="clima_info">
+                <h3>Max</h3>
+                <h4>Min</h4>
+                <h5>condição climatica</h5>
+            </div>
+            <div id="img_animar"></div>
+        </section>
+    </main>
+<script>
+        //efetuar a validação de valores incompletos
+        vogais_acentuadas = ['á','à','ã','â','é','è','ê','í','ì','î','ó','ò','õ','ô','ú','ù','û']
+        vogais_0 = ['a','e','i','o','u']
+        id_city = 0
+        uf_cidade = ''
+        condi_0=''
+        lista_city=[]
+        lista_uf=[]
+        lista=[]
+        input_0 = document.querySelector('#cidade_0')
+        botao_0 = document.querySelector('#bt_0')
+        ativa_0 = 0
+
+        document.querySelector('#arrow_bt').onclick=function(){
+                if(ativa_0===0){
+                    document.querySelector('#arrow_bt').animate([{transform:'rotate(180deg)'},{transform:'rotate(0deg)'}],{duration:1000})
+                    document.querySelector('#arrow_bt').style.transform='rotate(0deg)'
+                    document.querySelector('#box_0').animate([{left:'20px'},{left:'-170px'}],{duration:1000})
+                    document.querySelector('#box_0').style.left='-170px';ativa_0++}
+                    else{document.querySelector('#arrow_bt').animate([{transform:'rotate(0deg)'},{transform:'rotate(180deg)'}],{duration:1000})
+                    document.querySelector('#arrow_bt').style.transform='rotate(180deg)'
+                    document.querySelector('#box_0').animate([{left:'-170px'},{left:'20px'}],{duration:1000})
+                    document.querySelector('#box_0').style.left='20px';ativa_0=0}
+                    }
+                
+        function replace_vogal(str){
+            for(a=0;a<str.length;a++){
+                for(b=0;b<vogais_acentuadas.length;b++){
+                    if(str[a]===vogais_acentuadas[b]){
+                        if(vogais_acentuadas[b]==vogais_acentuadas[0]||
+                            vogais_acentuadas[b]==vogais_acentuadas[1]||
+                            vogais_acentuadas[b]==vogais_acentuadas[2]||
+                            vogais_acentuadas[b]==vogais_acentuadas[3]){
+                            str=str.replace(str[a],vogais_0[0])};
+                        if(vogais_acentuadas[b]==vogais_acentuadas[4]||
+                            vogais_acentuadas[b]==vogais_acentuadas[5]||
+                            vogais_acentuadas[b]==vogais_acentuadas[6]){
+                            str=str.replace(str[a],vogais_0[1])};
+                        if(vogais_acentuadas[b]==vogais_acentuadas[7]||
+                            vogais_acentuadas[b]==vogais_acentuadas[8]||
+                            vogais_acentuadas[b]==vogais_acentuadas[9]){
+                            str=str.replace(str[a],vogais_0[2])};
+                        if(vogais_acentuadas[b]==vogais_acentuadas[10]||
+                            vogais_acentuadas[b]==vogais_acentuadas[11]||
+                            vogais_acentuadas[b]==vogais_acentuadas[12]||
+                            vogais_acentuadas[b]==vogais_acentuadas[13]){
+                            str=str.replace(str[a],vogais_0[3])};
+                        if(vogais_acentuadas[b]==vogais_acentuadas[14]||
+                            vogais_acentuadas[b]==vogais_acentuadas[15]||
+                            vogais_acentuadas[b]==vogais_acentuadas[16]){
+                            str=str.replace(str[a],vogais_0[4])};
+                    }
+                }
+
+            };return p=str
+        }
+        //premissa de geração aleatoria adicionar animação e remoção via remove
+        function teste(url_img){
+            setTimeout(function(){if(condi_0=='c'){
+                url_img='https://www.svgrepo.com/show/311938/cloud-with-rain.svg'
+            }else{
+             url_img='https://www.svgrepo.com/show/407545/sun-behind-large-cloud.svg'
+            };if(document.querySelectorAll('#img_animar img').length>1){
+                for(a=0;a<document.querySelectorAll('#img_animar img').length;a++){
+                    document.querySelectorAll('#img_animar img')[a].src=url_img}
+            }},1000)
+            
+            setTimeout(function(){for(a=15;a>document.querySelectorAll('#box_1 img').length;a=15){
+                
+                tester=document.createElement('img')
+                tester.src=url_img
+                tester.style.width='50px'
+                tester.style.marginLeft='275px'
+                tester.style.position='absolute'
+                tester.style.opacity=Math.random()*1
+                tester.style.color='black'
+                tester.style.top=295-Math.floor(Math.random()*50)+'px'
+                document.querySelector('#img_animar').appendChild(tester)
+                
+            };for(a=0;a<document.querySelectorAll('#img_animar img').length;a++){
+                timer = Math.floor((Math.random()*7500)*2.7)
+                while(timer<3500){timer=Math.floor((Math.random()*7500)*2.7)}
+                document.querySelectorAll('#img_animar img')[a].animate([{marginLeft:'275px'},{marginLeft:'-75px'}],{duration:timer,iterations:Infinity})
+            }},1000)
+        }
+
+                
+        async function api_request(valor_input){
+            resp = await fetch(`https://brasilapi.com.br/api/cptec/v1/clima/previsao/${valor_input}`);
+            if(resp.status===200){
+                cidade_inf=Promise.resolve(resp.json())
+                cidade_inf.then(info=>{
+                    max_inner.innerHTML='Max:'+info['clima'][0]['max']
+                    min_inner.innerHTML='Min:'+info['clima'][0]['min']
+                    condi_inner.innerHTML='Condição Climatica:'+info['clima'][0]['condicao_desc']
+                    if(info['clima'][0]['condicao']==='pn'){
+                        condi_0=info['clima'][0]['condicao']
+                        document.querySelector('#box_1 img').src='https://www.svgrepo.com/show/407546/sun-behind-small-cloud.svg';
+                        document.querySelector('#box_1 img').animate([{transform:'matrix(1,0,0,1,0,100)'},{transform:'matrix(1,0,0,1,0,0)'}],{duration:1000})
+                    }
+                    if(info['clima'][0]['condicao']==='c'){
+                        condi_0=info['clima'][0]['condicao']
+                        document.querySelector('#box_1 img').src='https://www.svgrepo.com/show/404993/cloud-with-rain.svg';
+                        document.querySelector('#box_1 img').animate([{transform:'matrix(1,0,0,1,0,100)'},{transform:'matrix(1,0,0,1,0,0)'}],{duration:1000})
+                        condi_0=info['clima'][0]['condicao']
+                    }
+                })    
+            }
+        }
+        function cidade_id(valor_input0, numerador){
+            if(valor_input0.length>=4){
+                fetch(`https://brasilapi.com.br/api/cptec/v1/cidade/${valor_input0}`).then(arquivo=>{ return arquivo.json()})
+                .then(valores=>{
+                    for(a=0;a<valores.length;a++){
+                        if(valores[a]['nome']==lista_city[0]){lista_city.push(valores[a]['nome']),lista_uf.push(valores[a]['estado'])};
+                        if(lista_city.length==0){lista_city.push(valores[a]['nome']),lista_uf.push(valores[a]['estado'])}
+                    }
+                    if(lista_city.length<=1){
+                        uf_cidade = valores[0]['estado']
+                        id_city = valores[0]['id']
+                        name_city=valores[0]['nome']
+                        }
+                    else{
+                        uf_cidade = valores[numerador]['estado']
+                        id_city = valores[numerador]['id']}
+                        name_city=valores[numerador]['nome']
+                        
+                        //executa o fatiamento da string
+                        //console.log(valores[numerador]['nome'].slice(0,5))
+                    
+                }) }
+                else{return console.log('ERROR')}
+        };
+        cidade_inner = document.querySelector('#cidade_info h1')
+        uf_inner = document.querySelector('#cidade_info h2')
+        max_inner = document.querySelector('#clima_info h3')
+        min_inner = document.querySelector('#clima_info h4')
+        condi_inner = document.querySelector('#clima_info h5')
+
+        botao_0.addEventListener('click', function(){
+            name_city = document.querySelector('#cidade_0').value
+            cidade_id(name_city)
+            setTimeout(function(){
+                if(lista_city.length<=1&&lista_city[0].length>4){setTimeout(function(){
+                    //executar a validação da imagem referente ao clima
+                    setTimeout(function(){
+                        teste()
+                    },1000)
+                    setTimeout(function(){
+                        document.querySelector('#arrow_bt').animate([{transform:'rotate(180deg)'},{transform:'rotate(0deg)'}],{duration:1000})
+                        document.querySelector('#arrow_bt').style.transform='rotate(0deg)'
+                        document.querySelector('#box_0').animate([{left:'20px'},{left:'-170px'}],{duration:1000})
+                        document.querySelector('#box_0').style.left='-170px';ativa_0++},900)
+                    
+                    
+                    document.querySelector('#box_1').style.display='table'
+                    input_0.value='';
+                    api_request(id_city);lista_city.length=0;lista_uf.length=0;
+                    uf_inner.innerHTML=uf_cidade,cidade_inner.innerHTML=name_city.toUpperCase()
+                },1000)}
+                
+                if(lista_city.length>1){
+                        if(document.querySelectorAll('#box_0 button').length<=1){
+                        botao_1 = document.createElement('button')
+                        botao_1.innerHTML='Confirmar'}
+                        tag_select = document.createElement('select')
+                    for(a=0;a<lista_city.length;a++){
+                        tag_option = document.createElement('option')
+                        tag_option.innerHTML=lista_city[a]+`(${lista_uf[a]})`
+                        tag_select.appendChild(tag_option)
+                        };
+
+                    input_0.style.display='none';
+                    document.querySelector('#box_0').appendChild(tag_select);
+                    document.querySelector('#box_0').appendChild(botao_1);
+                    botao_1.style.display='block'
+                    botao_0.style.display='none';
+
+                    botao_1.onclick=function(){
+                        setTimeout(function(){
+                            teste();
+                        },1000)
+                        cidade_id(name_city,tag_select.selectedIndex);
+                        setTimeout(function(){
+                            document.querySelector('#arrow_bt').animate([{transform:'rotate(180deg)'},{transform:'rotate(0deg)'}],{duration:1000})
+                            document.querySelector('#arrow_bt').style.transform='rotate(0deg)'
+                            document.querySelector('#box_0').animate([{left:'20px'},{left:'-170px'}],{duration:1000})
+                            document.querySelector('#box_0').style.left='-170px';ativa_0++},900)
+                        setTimeout(function(){
+                            document.querySelector('#box_1').style.display='table';
+                            cidade_inner.innerHTML=lista_city[tag_select.selectedIndex];
+                            uf_inner.innerHTML=lista_uf[tag_select.selectedIndex];
+                            api_request(id_city);console.log(uf_cidade);
+                            input_0.value='',input_0.style.display='block',tag_select.style.display='none';
+                            botao_0.style.display='block';botao_1.style.display='none';lista_city.length=0;lista_uf.length=0;
+                            document.querySelector('#box_0').removeChild(tag_select);
+                            
+                        },1000)}
+            
+            }},1000)
+            
+        })
+        
+</script>
+</body>
+</html>
