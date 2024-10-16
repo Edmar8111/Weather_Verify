@@ -303,7 +303,7 @@
             name_city = document.querySelector('#cidade_0').value
             cidade_id(name_city)
             setTimeout(function(){
-                if(lista_city.length<=1&&lista_city[0].length>4){setTimeout(function(){
+                if(lista_city.length<=1&&lista_city[0].length>4){function(){
                     //executar a validação da imagem referente ao clima
                     setTimeout(function(){
                         teste()
@@ -319,7 +319,7 @@
                     input_0.value='';
                     api_request(id_city);lista_city.length=0;lista_uf.length=0;
                     uf_inner.innerHTML=uf_cidade,cidade_inner.innerHTML=name_city.toUpperCase()
-                },1000)}
+                }
                 
                 if(lista_city.length>1){
                         if(document.querySelectorAll('#box_0 button').length<=1){
