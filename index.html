@@ -284,8 +284,8 @@
                         }
                     else{
                         uf_cidade = valores[numerador]['estado']
-                        id_city = valores[numerador]['id']}
-                        name_city=valores[numerador]['nome']
+                        id_city = valores[numerador]['id']
+                        name_city=valores[numerador]['nome']}
                         
                         //executa o fatiamento da string
                         //console.log(valores[numerador]['nome'].slice(0,5))
@@ -300,8 +300,8 @@
         condi_inner = document.querySelector('#clima_info h5')
 
         botao_0.addEventListener('click', function(){
-
             name_city = document.querySelector('#cidade_0').value
+            cidade_id(name_city)
             setTimeout(function(){
                 if(lista_city.length<=1&&lista_city[0].length>4){setTimeout(function(){
                     //executar a validação da imagem referente ao clima
@@ -361,8 +361,6 @@
             
             }},1000)
             
-            
-            cidade_id(name_city)
         })
         
 </script>
