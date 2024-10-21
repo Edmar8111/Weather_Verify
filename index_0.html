@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <span id="message" style="display:none;background-color: aquamarine;color: red;">ERROR CIDADE NÃO ENCOTRADA</span>
+    <label for=cidade_input>CIDADE</label>
+    <input type='text' id="cidade_input" placeholder="Insira a Cidade">
+    <button id="bt_0">Confirmar</button>
+
+    <section id="clima_info">
+        <div id="temp_atual"></div>
+        <div id="sens_termiac"></div>
+
+        <div id="temp_max"></div>
+        <div id="temp_min"></div>
+        <div id="humidade"></div>
+    </section>
+
+
+    <script>
+        valor_cidade = document.querySelector('#cidade_input')
+        botao_0 = document.querySelector('#bt_0')
+        
+           async function request_api(cidade_input){
+                key = "57a481ac861c7f2fc1091502be4cc421"
+                city=cidade_input.value
+                url_api = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${key}`)
+                if(url_api.status===200){
+                    files=Promise.resolve(url_api.json())
+                    files.then(files=>{console.log(files['main'])
+                        document.querySelector('#clima_info #temp_atual').innerHTML=files['main']['temp']
+                        document.querySelector('#clima_info #temp_atual').innerHTML="TEMPERATURA:"+document.querySelector('#clima_info #temp_atual').innerHTML.slice(0,2)
+
+                    })
+                    
+                    dados_city = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${key}`)
+                    dados=Promise.resolve(dados_city.json()).then(dados=>{console.log(dados)})
+                }
+                if(url_api.status!==200){
+                    document.querySelector('#message').style.display='block'
+                }
+           }
+            
+        botao_0.onclick=function(){request_api(valor_cidade)}
+    </script>
+</body>
+</html>
