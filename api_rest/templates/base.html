@@ -1,0 +1,236 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box_valores_formulario{
+            display:flex;
+            position:relative;
+            border: 1px solid;
+            justify-content:center;
+            height:200px;
+        }
+        #box_valores_formulario form{
+            display:flex;
+            flex-direction: column;
+            justify-content:space-around;
+        }
+        #box_valores_formulario input{
+            width:486px;
+            padding:5px;
+        } 
+        #box_valores_formulario button, select{
+            width:500px;
+            padding:5px;
+        }
+        #nova_busca{
+            position:relative;
+            text-align-last: center;
+            top:-205px;
+        }
+        #nova_busca button{
+            padding:5px;
+            border-radius:5px;
+            cursor: pointer;
+        }
+        
+    </style>
+</head>
+<body>
+    <p style="display:none;" id="msg_error">{{msg_error}}</p>
+    <!--forma sem carregamento que não gera valor via backend requeste value
+    <select>
+        <option>Acre</option>
+        
+        <option>Alagoas</option>
+        
+        <option>Amapá</option>
+        
+        <option>Amazonas</option>
+        
+        <option>Bahia</option>
+        
+        <option>Ceará</option>
+        
+        <option>Distrito Federal</option>
+        
+        <option>Espírito Santo</option>
+        
+        <option>Goiás</option>
+        
+        <option>Maranhão</option>
+        
+        <option>Mato Grosso</option>
+        
+        <option>Mato Grosso do Sul</option>
+        
+        <option>Minas Gerais</option>
+        
+        <option>Pará</option>
+        
+        <option>Paraíba</option>
+        
+        <option>Paraná</option>
+        
+        <option>Pernambuco</option>
+        
+        <option>Piauí</option>
+        
+        <option>Rio de Janeiro</option>
+        
+        <option>Rio Grande do Norte</option>
+        
+        <option>Rio Grande do Sul</option>
+        
+        <option>Rondônia</option>
+        
+        <option>Roraima</option>
+        
+        <option>Santa Catarina</option>
+        
+        <option>São Paulo</option>
+        
+        <option>Sergipe</option>
+        
+        <option>Tocantins</option>
+    </select>
+    <input id='cidade' type="text" placeholder="Insira a Cidade">
+    <button id="botao">Selecionar</button>
+-->
+    <div id="box_valores_formulario">
+        <form action="{%url 'home0'%}" method="POST" enctype="multipart/form-data">{%csrf_token%}
+            <label for="valor_1" id="valore01">Insira a Cidade</label>
+            <input name='valor_1' id='cidade' type="text" placeholder="Insira a Cidade">
+            <label for="valor_0">Insira o Estado</label>
+            <select name="valor_0">
+                <option>Acre</option>
+                
+                <option>Alagoas</option>
+                
+                <option>Amapá</option>
+                
+                <option>Amazonas</option>
+                
+                <option>Bahia</option>
+                
+                <option>Ceará</option>
+                
+                <option>Distrito Federal</option>
+                
+                <option>Espírito Santo</option>
+                
+                <option>Goiás</option>
+                
+                <option>Maranhão</option>
+                
+                <option>Mato Grosso</option>
+                
+                <option>Mato Grosso do Sul</option>
+                
+                <option>Minas Gerais</option>
+                
+                <option>Pará</option>
+                
+                <option>Paraíba</option>
+                
+                <option>Paraná</option>
+                
+                <option>Pernambuco</option>
+                
+                <option>Piauí</option>
+                
+                <option>Rio de Janeiro</option>
+                
+                <option>Rio Grande do Norte</option>
+                
+                <option>Rio Grande do Sul</option>
+                
+                <option>Rondônia</option>
+                
+                <option>Roraima</option>
+                
+                <option>Santa Catarina</option>
+                
+                <option>São Paulo</option>
+                
+                <option>Sergipe</option>
+                
+                <option>Tocantins</option>
+            </select>
+            <button id="botao">Selecionar</button>
+        </form>
+    </div>
+    <div id="nova_busca" >
+        <button style="transform:rotate3d(1,0,0, 90deg)">NOVA BUSCA</button>
+    </div>
+    <div id="info_cidade" style="display:none; position:relative;">
+        <p>Estado:{{sigla}}</p>
+        <p>Cidade:{{cidade}}</p>
+        <p id="max_data" >Maxima: {{maxima}}°</p>
+        <p id="min_data" >Minima: {{minima}}°</p>
+    </div>
+    
+    <div id="conteudo_estendido" style="display:none;">
+        <button id="botao_estender">Próximos Dias</button>
+        <div id="conteudo_estendido_0" style="display:none;">
+            <p>{{dia_0.data_prev}} => Max:{{dia_0.max_diaria}} Min:{{dia_0.min_diaria}}</p>
+            <p>{{dia_1.data_prev}} => Max:{{dia_1.max_diaria}} Min:{{dia_1.min_diaria}}</p>
+            <p>{{dia_2.data_prev}} => Max:{{dia_2.max_diaria}} Min:{{dia_2.min_diaria}}</p>
+            <p>{{dia_3.data_prev}} => Max:{{dia_3.max_diaria}} Min:{{dia_3.min_diaria}}</p>
+            <p>{{dia_4.data_prev}} => Max:{{dia_4.max_diaria}} Min:{{dia_4.min_diaria}}</p>
+            <p>{{dia_5.data_prev}} => Max:{{dia_5.max_diaria}} Min:{{dia_5.min_diaria}}</p>
+        </div>
+    </div>
+<script>
+    // function reload_page(){
+    //     pagina = location.pathname
+    //     location.replace('' + pagina)
+    // }
+    // if(window.location.reload){console.log('requeste')}
+    
+    
+    function animar_formulario(valor0, valor1){
+        document.querySelector('#box_valores_formulario').animate([{top:`${valor0}px`},{top:`${valor1}px`}],{duration:1000})
+    } 
+    function animar_button0(valor0, valor1, timer){
+        document.querySelector('#nova_busca button').animate([{transform:`rotate3d(1,0,0, ${valor0}deg)`},{transform:`rotate3d(1,0,0, ${valor1}deg)`}],{duration:timer})
+    }
+    
+    document.querySelector('#botao_estender').addEventListener('click', function(){
+        if(document.querySelector('#conteudo_estendido_0').style.display=='none'){
+        document.querySelector('#conteudo_estendido_0').style.display='block'}
+        else{document.querySelector('#conteudo_estendido_0').style.display='none'}
+    })
+    
+    if(document.querySelector('#max_data').innerHTML.length>9 && document.querySelector('#min_data').innerHTML.length>9){
+        document.querySelector('#conteudo_estendido').style.display='block'
+        
+        animar_formulario(0, -201)
+        setTimeout(function(){
+            document.querySelector('#box_valores_formulario').style.top='-201px',    
+            animar_button0(90, 0, 250), document.querySelector('#info_cidade').style.display='block', document.querySelector('#info_cidade').style.top='-183px'
+        },900);
+        setTimeout(function(){document.querySelector('#nova_busca button').style.transform='rotate3d(1,0,0, 0deg)';
+        },1100);
+    };
+    
+    document.querySelector('#nova_busca button').addEventListener('click', function(){
+        animar_button0(0, 90, 100)
+        setTimeout(function(){document.querySelector('#nova_busca button').style.transform='rotate3d(1,0,0, 90deg)'})
+        animar_formulario(-201, 0)
+        setTimeout(function(){document.querySelector('#box_valores_formulario').style.top='0px'},900)
+    })
+    
+    
+    
+    
+    if(document.querySelector('#msg_error').innerHTML.length>0){document.querySelector('#msg_error').style.display='block'}
+
+
+    
+</script>
+</body>
+</html>
