@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    #conteudo{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    #telas_span span{
+        position: absolute;
+        border: 1px solid;
+        left: 5%;
+        width: 90%;
+        background-color: cadetblue;
+        height: -webkit-fill-available;
+        border-radius: 25px;
+        text-align: center;
+    }
+    #botoes_bar button{
+        width: 100px;
+        height: 25px;
+        margin: -1px 50px;
+        border-radius: 5px;
+        border: 1px solid;
+        position: relative;
+        cursor: pointer;
+        background-color: darkcyan;
+    }
+    </style>
+</head>
+<body>
+    <section id="conteudo">
+        <div id="botoes_bar"> 
+            <button id="botao_a">A</button>
+            
+            <button id="botao_b">B</button>
+            
+            <button id="botao_c">C</button>
+        </div>
+        <div id="telas_span">
+            <span id="span_a" style="z-index: 1;">A</span>
+            <span id="span_b" style="z-index: 0;">B</span>
+            <span id="span_c" style="z-index: 0;">C</span>
+        </div>
+    </section>
+    <script>
+        function resetar_span(){
+            document.querySelector('#span_a').style.zIndex='0',
+            document.querySelector('#botao_a').style.top='0px',
+            document.querySelector('#botao_a').style.borderBottom='1px solid',
+            document.querySelector('#botao_a').style.backgroundColor='darkcyan',
+            document.querySelector('#botao_a').style.zIndex='1';
+
+            document.querySelector('#span_b').style.zIndex='0',
+            document.querySelector('#botao_b').style.top='0px',
+            document.querySelector('#botao_b').style.borderBottom='1px solid',
+            document.querySelector('#botao_b').style.backgroundColor='darkcyan',
+            document.querySelector('#botao_b').style.zIndex='1';
+
+            document.querySelector('#span_c').style.zIndex='0';
+            document.querySelector('#botao_c').style.top='0px',
+            document.querySelector('#botao_c').style.borderBottom='1px solid',
+            document.querySelector('#botao_c').style.backgroundColor='darkcyan',
+            document.querySelector('#botao_c').style.zIndex='1'
+
+        }
+
+        
+        function ativar_span(span_id, botao_id){
+            resetar_span()
+                document.querySelector(span_id).style.zIndex='1'
+                document.querySelector(botao_id).style.top='2px',
+                document.querySelector(botao_id).style.borderBottom='none',
+                document.querySelector(botao_id).style.backgroundColor='cadetblue',
+                document.querySelector(botao_id).style.zIndex='2'
+            
+        };
+        document.querySelector('#botao_a').addEventListener('click', function(){ativar_span('#span_a', '#botao_a')})
+        
+        document.querySelector('#botao_b').addEventListener('click', function(){ativar_span('#span_b', '#botao_b')})
+        
+        document.querySelector('#botao_c').addEventListener('click', function(){ativar_span('#span_c', '#botao_c')})
+
+
+    </script>
+</body>
+</html>
