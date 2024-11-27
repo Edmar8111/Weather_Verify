@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    #conteudo{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    #tela_0{
+        border: 1px solid;
+        position: fixed;
+        height: 95%;
+        width: 98%;
+        z-index: 2;
+        top: 31px;
+        text-align: center;
+        background-color: aqua;
+        border-radius: 15px;
+    }
+    #telas_span span{
+        position: absolute;
+        border: 1px solid;
+        left: 5%;
+        width: 90%;
+        background-color: cadetblue;
+        height: -webkit-fill-available;
+        border-radius: 25px;
+        text-align: center;
+    }
+    #botoes_bar button{
+        width: 121px;
+        height: 25px;
+        margin: -1px 50px;
+        border-radius: 5px;
+        border: 1px solid;
+        position: relative;
+        cursor: pointer;
+        background-color: darkcyan;
+    }
+    #telas_span span div img{
+        cursor: pointer;
+    }
+    </style>
+</head>
+<body>
+    <span id="tela_0"><p>Marketing Verificador</p></span>
+    <section id="conteudo">
+        <div id="botoes_bar"> 
+
+            <button id="botao_a">Promoções Ativas</button>
+            
+            <button id="botao_b">Midias Sociais</button>
+            
+            <button id="botao_c">Fluxo Transporte</button>
+        </div>
+        <div id="telas_span">
+            <span id="span_a" style="z-index: 1;">
+                <div style="display: flex;flex-direction: row; justify-content:space-around;margin: 25px 0px;font-family: cursive;font-size: large;">
+                    <p>Promocão Hamburguer Personalizado Especial</p>
+                    <p>R$16,99</p>
+                    <img style="width: 25px;height: 25px;background-color: darkcyan;border-radius: 5px;border: 1px solid;box-shadow: 2px 2px 3px;" src="https://www.svgrepo.com/show/522527/edit-3.svg">
+                </div>
+                <div style="display: flex;flex-direction: row; justify-content:space-around;margin: 25px 0px;font-family: cursive;font-size: large;">
+                    <p>Promocão Hamburguer Personalizado Especial 01</p>
+                    <p>R$18,99</p>
+                    <img style="width: 25px;height: 25px;background-color: darkcyan;border-radius: 5px;border: 1px solid;box-shadow: 2px 2px 3px;" src="https://www.svgrepo.com/show/522527/edit-3.svg">
+                </div>
+                <div style="display: flex;flex-direction: row; justify-content:space-around;margin: 25px 0px;font-family: cursive;font-size: large;">
+                    <p>Promocão Hamburguer Personalizado Especial 02</p>
+                    <p>R$21,99</p>
+                    <img style="width: 25px;height: 25px;background-color: darkcyan;border-radius: 5px;border: 1px solid;box-shadow: 2px 2px 3px;" src="https://www.svgrepo.com/show/522527/edit-3.svg">
+                </div>
+                <div style="display: flex;flex-direction: row; justify-content:space-around;margin: 25px 0px;font-family: cursive;font-size: large;">
+                    <p>Promocão Hamburguer Personalizado Especial 03</p>
+                    <p>R$25,99</p>
+                    <img style="width: 25px;height: 25px;background-color: darkcyan;border-radius: 5px;border: 1px solid;box-shadow: 2px 2px 3px;" src="https://www.svgrepo.com/show/522527/edit-3.svg">
+                </div>
+                <div style="display: flex;flex-direction: row; justify-content:space-around;margin: 25px 0px;font-family: cursive;font-size: large;">
+                    <p>Promocão Hamburguer Personalizado Especial 04</p>
+                    <p>R$27,99</p>
+                    <img style="width: 25px;height: 25px;background-color: darkcyan;border-radius: 5px;border: 1px solid;box-shadow: 2px 2px 3px;" src="https://www.svgrepo.com/show/522527/edit-3.svg">
+                </div>
+            </span>
+            <span id="span_b" style="z-index: 0;">B</span>
+            <span id="span_c" style="z-index: 0;">C</span>
+        </div>
+    </section>
+    <script>
+        function ativa_animacao(id_valor){
+            document.querySelector(id_valor).animate([{transform:'rotate3d(0,1,0,0deg)'},{transform:'rotate3d(0,1,0,90deg)'}],{duration:900})
+        }
+        function anima_return(id_valor){
+            document.querySelector(id_valor).animate([{left:'10%'},{left:'5%'}],{duration:500})
+        };
+        function resetar_span(){
+            document.querySelector('#span_a').style.zIndex='0',
+            document.querySelector('#botao_a').style.top='0px',
+            document.querySelector('#botao_a').style.borderBottom='1px solid',
+            document.querySelector('#botao_a').style.backgroundColor='darkcyan',
+            document.querySelector('#botao_a').style.zIndex='1';
+
+            document.querySelector('#span_b').style.zIndex='0',
+            document.querySelector('#botao_b').style.top='0px',
+            document.querySelector('#botao_b').style.borderBottom='1px solid',
+            document.querySelector('#botao_b').style.backgroundColor='darkcyan',
+            document.querySelector('#botao_b').style.zIndex='1';
+
+            document.querySelector('#span_c').style.zIndex='0';
+            document.querySelector('#botao_c').style.top='0px',
+            document.querySelector('#botao_c').style.borderBottom='1px solid',
+            document.querySelector('#botao_c').style.backgroundColor='darkcyan',
+            document.querySelector('#botao_c').style.zIndex='1'
+
+        }
+
+        
+        function ativar_span(span_id, botao_id){
+            resetar_span()
+                document.querySelector(span_id).style.zIndex='1'
+                document.querySelector(botao_id).style.top='2px',
+                document.querySelector(botao_id).style.borderBottom='none',
+                document.querySelector(botao_id).style.backgroundColor='cadetblue',
+                document.querySelector(botao_id).style.zIndex='2'
+            
+        };
+        document.querySelector('#botao_a').addEventListener('click', function(){
+            ativa_animacao('#tela_0');
+            anima_return('#span_a');
+            setTimeout(function(){
+            document.querySelector('#tela_0').style.display='none';},890);
+            ativar_span('#span_a', '#botao_a')
+        });
+        
+        document.querySelector('#botao_b').addEventListener('click', function(){
+            ativa_animacao('#tela_0');
+            anima_return('#span_b');
+            setTimeout(function(){
+                document.querySelector('#tela_0').style.display='none';},890);
+            ativar_span('#span_b', '#botao_b')})
+        
+        document.querySelector('#botao_c').addEventListener('click', function(){
+            ativa_animacao('#tela_0');
+            anima_return('#span_c');
+            setTimeout(function(){
+                document.querySelector('#tela_0').style.display='none';},890);
+            ativar_span('#span_c', '#botao_c')})
+
+
+    </script>
+</body>
+</html>
